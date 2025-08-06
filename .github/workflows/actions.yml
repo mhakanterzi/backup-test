@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Yedekleme [${{ github.event_name }}] #${{ github.run_number }}: ${{ github.sha }} by ${{ github.actor }}"
-        uses: mhakanterzi/marketplace-test-workflow@v1.0.19
+        uses: mhakanterzi/marketplace-test-workflow@latest
         with:
           activation_code: ${{ secrets.ACTIVATION_CODE }}
           encryption_password: ${{ secrets.ENCRYPTION_PASSWORD }}
