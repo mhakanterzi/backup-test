@@ -1,6 +1,6 @@
 name: "Yedekleme Islemi"
  on:
-   push:
+   workflow_dispatch:
  
  jobs:
    check-files:
