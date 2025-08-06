@@ -1,16 +1,23 @@
 name: "Yedekleme Islemi"
- on:
-   workflow_dispatch: {}
- 
- jobs:
-   check-files:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout repository
-         uses: actions/checkout@v4
- 
-       - name: "Yedekleme [${{ github.event_name }}] #${{ github.run_number }}: ${{ github.sha }} by ${{ github.actor }}"
-         uses: mhakanterzi/marketplace-test-workflow@v1.0.19
-         with:
-           activation_code: ${{ secrets.ACTIVATION_CODE }}
-           encryption_password: ${{ secrets.ENCRYPTION_PASSWORD }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      manual_note:
+        description: 'İsteğe bağlı açıklama'
+        required: false
+        default: ''
+
+jobs:
+  check-files:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: "Yedekleme [${{ github.event_name }}] #${{ github.run_number }}: ${{ github.sha }} by ${{ github.actor }}"
+        uses: mhakanterzi/marketplace-test-workflow@v1.0.19
+        with:
+          activation_code: ${{ secrets.ACTIVATION_CODE }}
+          encryption_password: ${{ secrets.ENCRYPTION_PASSWORD }}
